@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, PORT, BDD } = process.env;
 
-const database = new Sequelize(
+const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${BDD}`,
   {
     logging: false,
@@ -14,10 +14,10 @@ const database = new Sequelize(
   }
 );
 
-DriverFunction(database);
-TeamFunction(database);
+DriverFunction(sequelize);
+TeamFunction(sequelize);
 
-const { Driver, Team } = database.models;
+const { Driver, Team } = sequelize.models;
 Driver.belongsToMany(Team, { through: "DriverTeam" });
 Team.belongsToMany(Driver, { through: "DriverTeam" });
 
@@ -34,16 +34,16 @@ fs.readdirSync(path.join(__dirname, "/models"))
     modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
 
-modelDefiners.forEach((model) => model(database));
+modelDefiners.forEach((model) => model(sequelize));
 
-let entries = Object.entries(database.models);
+let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
   entry[0][0].toUpperCase() + entry[0].slice(1),
   entry[1],
 ]);
-database.models = Object.fromEntries(capsEntries);
+sequelize.models = Object.fromEntries(capsEntries);
 
 module.exports = {
-  ...database.models, 
-  conn: database, 
+  ...sequelize.models,
+  conn: sequelize,
 };

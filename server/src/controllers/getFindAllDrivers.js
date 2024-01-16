@@ -1,7 +1,7 @@
 const { query } = require("express");
 const { Driver, Team } = require("../db.js");
 
-const findAllDrivers = async (query) => {
+const getFindAllDrivers = async (query) => {
   const drivers = await Driver.findAll({
     //? para filtrar con marcado
     where: query,
@@ -19,4 +19,4 @@ const findAllDrivers = async (query) => {
   return drivers;
 };
 
-module.exports = findAllDrivers;
+module.exports = getFindAllDrivers;
