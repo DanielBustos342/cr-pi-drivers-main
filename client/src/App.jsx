@@ -3,7 +3,6 @@ import Landing from "./Views/Landing/Landing";
 import Home from "./Views/Home/Home";
 import Form from "./Views/Form/Form";
 import Details from "./Views/Details/Details";
-import "./App.css";
 
 function App() {
   return (
