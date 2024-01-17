@@ -1,29 +1,33 @@
-// import React from 'react'
-// import { useDispatch, useState } from "react-redux"
+import React from "react";
+import { useState } from "react";
 
+const Searchbar = () => {
+  const [nameToFilter, setNameToFilter] = useState("");
 
-// const Searchbar = () => {
+  const handlerSearch = () => {
+    if (!nameToFilter || !isNaN(nameToFilter))
+      return alert("Enter a valid name");
+  };
 
-//     const dispatch = useDispatch();
-//     const [state, setState] = useState('');
+  const handlerChange = (event) => {
+    setNameToFilter(event.target.value);
+  };
 
-//     const handleChange = (e) => {
-//         setState(e.target.value)
-//     }
+  return (
+    <div>
+      <div>
+        <input
+          type="text"
+          value={nameToFilter}
+          placeholder="Write a name"
+          onChange={handlerChange}
+        />
+      </div>
+      <div>
+        <button onClick={handlerSearch}>Search</button>
+      </div>
+    </div>
+  );
+};
 
-//     const handleSubmit = (value) => {
-//         event.preventDefault();
-//         dispatch(state);
-//     }
-
-//   return (
-//     <div>
-//         <form onSubmit={handleSubmit}>
-//             <input onChange={handleChange} type="text" />
-//             <input type="submit" />
-//         </form>
-//     </div>
-//   )
-// }
-
-// export default Searchbar
+export default Searchbar;
