@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Details = () => {
-  return (
-    <div>Details</div>
-  )
-}
+  return <div>ESTOY EN DETAIL</div>;
+};
 
-export default Details
+export default Details;
