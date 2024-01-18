@@ -1,11 +1,11 @@
 const getFindForename = require("./controllers/postCreateDriver.js");
-const getFindAllDrivers = require("./controllers/getFindAllDrivers.js");
-const getFindDriverById = require("./controllers/getFindDriverById.js");
+const getAllDrivers = require("./controllers/getFindAllDrivers.js");
+const getDriverById = require("./controllers/getFindDriverById.js");
 
 //!buscar todos los drivers
 server.get("/driver", async (req, res) => {
   try {
-    const drivers = await getFindAllDrivers();
+    const drivers = await getAllDrivers();
     res.status(200).json(drivers);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -15,7 +15,7 @@ server.get("/driver", async (req, res) => {
 server.get("/driver/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const driver = await getFindDriverById(id);
+    const driver = await getDriverById(id);
     res.status(200).json(driver);
   } catch (error) {
     console.log("errorrrrrrrrrrrrrrrrrrr");
