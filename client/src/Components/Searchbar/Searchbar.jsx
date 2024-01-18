@@ -2,15 +2,10 @@ import React from "react";
 import { useState } from "react";
 
 const Searchbar = () => {
-  const [nameToFilter, setNameToFilter] = useState("");
-
-  const handlerSearch = () => {
-    if (!nameToFilter || !isNaN(nameToFilter))
-      return alert("Enter a valid name");
-  };
+  const [id, setId] = useState("");
 
   const handlerChange = (event) => {
-    setNameToFilter(event.target.value);
+    setId(event.target.value);
   };
 
   return (
@@ -18,7 +13,7 @@ const Searchbar = () => {
       <div>
         <input
           type="text"
-          value={nameToFilter}
+          value={id}
           placeholder="Write a name"
           onChange={handlerChange}
         />

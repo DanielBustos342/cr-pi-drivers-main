@@ -1,19 +1,22 @@
 import React from "react";
 import Card from "../Card/Card.jsx";
 
-export default function Cards({ drivers }) {
+const Cards = ({ drivers }) => {
   return (
     <div>
       {drivers.map((driver) => (
         <Card
-          key={driver.id}
+          key={driver.id} // clave unica
           id={driver.id}
           forename={driver.forename}
           surname={driver.surname}
-          image_url={driver.image_url}
-          teams={driver.teams}
+          teams={driver.Teams || driver.teams}
+          image={driver.image.url ? driver.image.url : driver.image}
+          dob={driver.dob}
         />
       ))}
     </div>
   );
-}
+};
+
+export default Cards;
