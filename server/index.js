@@ -1,10 +1,9 @@
-const axios = require("axios");
 const server = require("./src/server");
 const { conn } = require("./src/db.js");
-const PORT = 3001;
+const PORT = 3002;
 
 conn
-  .sync() //alter: true (es para hacer cambios pequeños)
+  .sync({ force: false }) //alter: true (es para hacer cambios pequeños)
   .then(() => {
     server.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
