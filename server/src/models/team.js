@@ -5,8 +5,8 @@
 
 const { DataTypes } = require("sequelize");
 
-module.exports = (database) => {
-  database.define(
+module.exports = (sequelize) => {
+  sequelize.define(
     "Team",
     {
       id: {

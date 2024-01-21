@@ -4,10 +4,11 @@
 // Si no existe el driver, debe mostrar un mensaje adecuado.
 // Debe buscar tanto los de la API como los de la base de datos.
 
-
 const axios = require("axios");
-const { Driver } = require("../db");
+const { Driver } = require("../db.js");
 const { Op } = require("sequelize");
+
+imgDefault = "../assets/imgErrorLoading.jpg";
 
 module.exports = async (nameSearch) => {
   try {
@@ -26,12 +27,12 @@ module.exports = async (nameSearch) => {
 
     const normalizedSearchTerm = nameSearch.toLowerCase();
 
-    const matchingApiDrivers = apiDrivers.filter((driver) => {
-      const fullName = `${driver.forename} `.toLowerCase();
+    const matchingApiDrivers = apiDrivers.filter((apiDriver) => {
+      const fullName = `${apiDriver.forename} `.toLowerCase();
       return fullName.includes(normalizedSearchTerm);
     });
 
-    const dbDrivers = await Driver.findAll({
+    const driversDB = await Driver.findAll({
       where: {
         forename: {
           [Op.iLike]: `%${nameSearch}%`,
@@ -39,9 +40,9 @@ module.exports = async (nameSearch) => {
       },
     });
 
-    const allDrivers = [...dbDrivers, ...matchingApiDrivers];
+    const allDrivers = [...driversDB, ...matchingApiDrivers];
 
-    return allDrivers.slice(0, 9);
+    return allDrivers.slice(0, 15);
   } catch (error) {
     console.error("Error en la función getDriversByName:", error);
     throw error;

@@ -4,13 +4,12 @@
 // Tiene que incluir los datos del/los team/s del driver al que está asociado.
 // Debe funcionar tanto para los drivers de la API como para los de la base de datos.
 
-
 const axios = require("axios");
-const URL_BASE = "http://localhost:5000/drivers/";
+const { Driver, Team } = require("../db.js");
 
 module.exports = async (id) => {
   try {
-    const response = await axios.get(`${URL_BASE}/${id}`);
+    const response = await axios.get(`http://localhost:5000/drivers/${id}`);
     return {
       ...response.data,
       Team: response.team,
