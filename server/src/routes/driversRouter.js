@@ -1,12 +1,14 @@
 const { Router } = require("express");
-const driversHandlers = require("../handler/driverHandlers.js");
-const driverForenameHandler = require("../handler/driverForenameHandler.js");
-const driverIdHandler = require("../handler/driverIdHandler.js");
+const getDriversHandlers = require("../handler/getDriverHandlers.js");
+const getDriverForenameHandler = require("../handler/getDriverForenameHandler.js");
+const getDriverIdHandler = require("../handler/getDriverIdHandler.js");
+const getTeamsHandlers = require("../handler/getTeamsHandlers.js");
 
 const driversRouter = Router();
 
-driversRouter.get("/", driversHandlers);
-driversRouter.get("/name", driverForenameHandler);
-driversRouter.get("/:id", driverIdHandler);
+driversRouter.get("/", getDriversHandlers);
+driversRouter.get("/name", getDriverForenameHandler);
+driversRouter.get("/:id", getDriverIdHandler);
+driversRouter.get("/", getTeamsHandlers);
 
 module.exports = driversRouter;

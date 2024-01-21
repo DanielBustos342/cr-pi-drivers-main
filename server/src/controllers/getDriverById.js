@@ -1,3 +1,10 @@
+// 📍 GET | /drivers/:idDriver
+// Esta ruta obtiene el detalle de un driver específico. Es decir que devuelve un objeto con la información pedida en el detalle de un driver.
+// El driver es recibido por parámetro (ID).
+// Tiene que incluir los datos del/los team/s del driver al que está asociado.
+// Debe funcionar tanto para los drivers de la API como para los de la base de datos.
+
+
 const axios = require("axios");
 const URL_BASE = "http://localhost:5000/drivers/";
 

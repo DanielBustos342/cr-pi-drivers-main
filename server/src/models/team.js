@@ -1,3 +1,8 @@
+// MODELO 2 | Teams
+
+// ID. *
+// Nombre. *
+
 const { DataTypes } = require("sequelize");
 
 module.exports = (database) => {
