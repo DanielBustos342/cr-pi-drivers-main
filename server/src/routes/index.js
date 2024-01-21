@@ -3,6 +3,6 @@ const driversRouter = require("./driversRouter.js");
 
 const router = Router();
 
-router.use("/", driversRouter);
+router.use("/drivers", driversRouter);
 
 module.exports = router;

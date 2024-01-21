@@ -1,4 +1,4 @@
-const db = require("../../api/db.json");
+const db = require("../db");
 
 const getAllDrivers = async () => {
   return db;
