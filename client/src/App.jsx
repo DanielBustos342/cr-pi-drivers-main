@@ -23,22 +23,10 @@ function App() {
     }
   }, [access, navigate]);
   //!------------------------------------------------------------------
-  // const [searchId, setSearchId] = useState("");
-  // const dispatch = useDispatch();
-
-  const onSearch = (id) => {
-    setSearchId(id);
-  };
-
-  // useEffect(() => {
-  //   if (searchId) {
-  //     dispatchEvent(getDriverById(searchId));
-  //   }
-  // }, [searchId, dispatch]);
 
   return (
     <div>
-      <NavBar onSearch={onSearch} />
+      <NavBar />
       <Routes>
         <Route path="/" element={<Landing onClick={start} />} />
         <Route path="/home" element={<Home />} />

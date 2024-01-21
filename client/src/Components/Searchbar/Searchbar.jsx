@@ -1,11 +1,20 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Searchbar = () => {
-  const [id, setId] = useState("");
+const Searchbar = ({ onSearch }) => {
+  const [driverName, setDriverName] = useState("");
 
-  const handlerChange = (event) => {
-    setId(event.target.value);
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setDriverName(value);
+  };
+
+  const handleClick = async () => {
+    try {
+      const driverData = await onSearch(driverName);
+      onSearch(driverData);
+    } catch (error) {
+      console.error("Error searching driver:", error);
+    }
   };
 
   return (
@@ -13,13 +22,13 @@ const Searchbar = () => {
       <div>
         <input
           type="text"
-          value={id}
+          // value={id}
           placeholder="Write a name"
-          onChange={handlerChange}
+          onChange={handleChange}
         />
       </div>
       <div>
-        <button onClick={handlerSearch}>Search</button>
+        <button onClick={handleClick}>Search</button>
       </div>
     </div>
   );
