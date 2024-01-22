@@ -30,7 +30,7 @@ function App() {
         <Route path="/" element={<Landing onClick={start} />} />
         <Route path="/home" element={<Home />} />
         <Route path="/form" element={<Form />} />
-        <Route path="/details/:id" element={<Details />} />
+        <Route path="/detail/:id" element={<Details />} />
       </Routes>
     </div>
   );

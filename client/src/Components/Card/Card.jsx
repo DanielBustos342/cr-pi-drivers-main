@@ -1,19 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ image, name, teams }) => {
+const Card = ({ id, image, name, teams }) => {
   return (
-    <div>
+    <Link to={`/detail/${id}`}>
       <div>
-        <h3>{name}</h3>
+        <div>
+          <h3>{name}</h3>
+        </div>
+        <div>
+          <img src={image} alt={name} />
+        </div>
+        <div>
+          <p>{teams}</p>
+        </div>
       </div>
-      <div>
-        <img src={image} alt={name} />
-      </div>
-      <div>
-        <p>{teams}</p>
-      </div>
-    </div>
+    </Link>
   );
 };
 
