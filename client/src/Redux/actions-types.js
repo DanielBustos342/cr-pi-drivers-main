@@ -1,8 +1,10 @@
 export const GET_DRIVERS = "GET_DRIVERS";
-export const GET_DRIVER_DETAIL = "GET_DRIVER_DETAIL";
+export const GET_DRIVER_ID = "GET_DRIVERS_ID";
+export const GET_TEAMS = "GET_TEAMS";
+export const PAGINATION = "PAGINATION";
 export const SEARCH_DRIVER = "SEARCH_DRIVER";
-export const ORDER_ASC_DESC = "ORDER_ASC_DESC";
-export const ORDER_BY_DOB = "ORDER_BY_DOB";
-export const FILTER_ALL_TEAMS = "FILTER_ALL_TEAMS";
-export const FILTER_TEAMS = "FILTER_TEAMS";
-export const FILTER_APIDB = "FILTER_APIDB";
+export const FILTER_TEAM = "FILTER_TEAM";
+export const FILTER_ORDER = "FILTER_ORDER";
+export const FILTER_ORIGIN = "FILTER_ORIGIN";
+export const CLEAN_DETAIL = "CLEAN_DETAIL";
+export const REFRESH = "REFRESH";

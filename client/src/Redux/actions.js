@@ -1,80 +1,158 @@
-import axios from "axios";
 import {
-  FILTER_ALL_TEAMS,
-  FILTER_APIDB,
-  FILTER_TEAMS,
   GET_DRIVERS,
-  GET_DRIVER_DETAIL,
-  ORDER_ASC_DESC,
-  ORDER_BY_DOB,
+  GET_TEAMS,
+  GET_DRIVER_ID,
+  PAGINATION,
   SEARCH_DRIVER,
+  FILTER_TEAM,
+  REFRESH,
+  FILTER_ORDER,
+  FILTER_ORIGIN,
+  CLEAN_DETAIL,
 } from "./actions-types.js";
+import axios from "axios";
+
+const URL_DRIVERS = "/drivers";
+const URL_TEAMS = "/teams";
 
 export const getDrivers = () => {
-  try {
-    return async function (dispatch) {
-      const drivers = await axios(`/drivers`);
-      dispatch({
+  return async function (dispatch) {
+    try {
+      const { data } = await axios(URL_DRIVERS);
+      return dispatch({
         type: GET_DRIVERS,
-        payload: drivers.data,
+        payload: data,
       });
-    };
-  } catch (error) {
-    window.alert(error.resporse.data.error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
-export const getDriverDetail = (id) => {
-  return async function (dispatch) {
-    const driverDetail = await axios(`/drivers/${id}`);
-    dispatch({
-      type: GET_DRIVER_DETAIL,
-      payload: driverDetail.data,
-    });
+export const getTeams = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(URL_TEAMS);
+      return dispatch({
+        type: GET_TEAMS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getDriverById = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(`${URL_DRIVERS}/${id}`);
+      return dispatch({
+        type: GET_DRIVER_ID,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const changePage = (order) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: PAGINATION,
+        payload: order,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
 export const searchDriver = (name) => {
-  return {
-    type: SEARCH_DRIVER,
-    payload: name,
-  };
-};
-
-export const orderDrivers = (payload) => {
-  return {
-    type: ORDER_ASC_DESC,
-    payload,
-  };
-};
-
-export const orderByDob = (payload) => {
-  return {
-    type: ORDER_BY_DOB,
-    payload,
-  };
-};
-
-export const allTeams = () => {
   return async (dispatch) => {
-    const teams = await axios.get(`/teams`);
-    dispatch({
-      type: FILTER_ALL_TEAMS,
-      payload: teams.data,
-    });
+    try {
+      const { data } = await axios(`${URL_DRIVERS}?name=${name}`);
+      return dispatch({
+        type: SEARCH_DRIVER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
-export const filterTeams = (payload) => {
-  return {
-    type: FILTER_TEAMS,
-    payload,
+export const filterTeam = (team) => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: FILTER_TEAM,
+        payload: team,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
-export const filterApiDB = (payload) => {
-  return {
-    type: FILTER_APIDB,
-    payload,
+export const filterOrder = (order) => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: FILTER_ORDER,
+        payload: order,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const refresh = () => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: REFRESH,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const filterOrigin = (origin) => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: FILTER_ORIGIN,
+        payload: origin,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const createDriver = (form) => {
+  return async () => {
+    try {
+      await axios.post(URL_DRIVERS, form);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const cleanDriverDetail = () => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: CLEAN_DETAIL,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

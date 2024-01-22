@@ -3,7 +3,6 @@
 // Alguna imagen de fondo representativa al proyecto.
 // Botón para ingresar a la home page.
 
-
 import React from "react";
 import landingVideo from "../../assets/img/Sky Sports F1 2021 Alternative Intro.mp4";
 import Style from "./Landing.module.css";

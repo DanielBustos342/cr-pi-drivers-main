@@ -11,44 +11,94 @@
 // Paginado: el listado de drivers se hará por partes. Tu SPA debe contar con un paginado que muestre un total de 9 drivers por página.
 // ⚠️ IMPORTANTE: se deben mostrar tanto los drivers traidos desde la API como así también los de la base de datos, pero NO está permitido almacenar en la base de datos los drivers de la API. Solamente se pueden guardar aquellos creados desde el form.
 
-
-
-import React, { useEffect, useState } from "react";
-import Cards from "../../Components/Cards/Cards.jsx";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllDrivers } from "../../Redux/actions.js";
-import axios from "axios";
+import {
+  getDrivers,
+  getTeams,
+  changePage,
+  filterTeam,
+  refresh,
+  filterOrder,
+  filterOrigin,
+} from "../../Redux/actions.js";
+import Cards from "../../Components/Cards/Cards.jsx";
 
 const Home = () => {
-  const [drivers, setDrivers] = useState([]);
-
-  const URL_BASE = "https://pi-drivers.onrender.com/drivers";
-
-  const dataDrivers = async () => {
-    try {
-      const response = await axios(`${URL_BASE}`);
-      setDrivers(response.data);
-    } catch (error) {
-      onsole.error("Error fetching data:", error);
-    }
-  };
+  const dispatch = useDispatch();
+  const drivers = useSelector((state) => state.drivers);
+  const teams = useSelector((state) => state.teams);
+  const currentPage = useSelector((state) => state.currentPage);
 
   useEffect(() => {
-    dataDrivers();
+    dispatch(getDrivers());
+    dispatch(getTeams());
   }, []);
 
-  const dispatch = useDispatch();
-  const allDrivers = useSelector((state) => state.allDrivers);
+  const pagination = (event) => {
+    dispatch(changePage(event.target.name));
+  };
 
-  useEffect(() => {
-    if (allDrivers.length === 0) {
-      dispatch(getAllDrivers());
-    }
-  }, [dispatch, allDrivers.length]);
+  const filter = (event) => {
+    if (event.target.name === "filter-teams")
+      dispatch(filterTeam(event.target.value));
+    if (event.taget.name === "filter-order")
+      dispatch(filterOrder(event.target.value));
+    if (event.target.name === "filter-origin")
+      dispatch(filterOrigin(event.taget.value));
+  };
+
+  const handleRefresh = () => {
+    dispatch(refresh());
+    document.getElementById("select-1").value = "all-drivers";
+    document.getElementById("select-2").value = "------";
+    document.getElementById("select-3").value = "------";
+  };
 
   return (
     <div>
-      <Cards drivers={drivers} />
+      <div>
+        <div>
+          <h3>Page: {currentPage + 1}</h3>
+        </div>
+        <div>
+          <button onClick={pagination} name="prev">
+            {"<<"}
+          </button>
+          <button onClick={handleRefresh}> Refresh</button>
+
+          <select id="select-1" name="filter-origin" onChange={filter}>
+            <option value="all-drivers">All Drivers</option>
+            <option value="created">Created</option>
+            <option value="api">API</option>
+          </select>
+
+          <select id="select-2" name="filter-teams" onChange={filter}>
+            <option value="------">------</option>
+            {teams?.map((team, index) => (
+              <option key={index} value={team}>
+                {team}
+              </option>
+            ))}
+          </select>
+
+          <select id="select-3" name="filter-order" onChange={filter}>
+            <option value="------">------</option>
+            <option value="asc">Ascendant</option>
+            <option value="desc">Descending</option>
+          </select>
+
+          <button onClick={pagination} name="next">
+            {">>"}
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <Cards drivers={drivers} />
+        </div>
+      </div>
     </div>
   );
 };

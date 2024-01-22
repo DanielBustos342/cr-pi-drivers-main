@@ -1,22 +1,60 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchDriver, refresh } from "../../Redux/actions.js";
 
 const Nav = () => {
-  const { pathName } = useLocation();
+  const dispatch = useDispatch();
+  const [input, setInput] = useState("");
 
-  if (pathName !== "/home") {
-    return (
-      <div>
-        <MyNavLink name="home" />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <h2>Hola estoy mostrando el ELSE de NAV</h2>
-      </div>
-    );
-  }
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
+
+  const handleButton = (event) => {
+    event.preventDefault();
+    dispatch(searchDriver(input));
+    document.getElementById("search").value = "";
+  };
+
+  const Refresh = () => {
+    dispatch(refresh());
+  };
+
+  return (
+    <nav>
+      <ul>
+        //imagen del logo
+        <li>
+          <img />
+        </li>
+        <li>
+          <Link onClick={Refresh} to="/home">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/form">Register Driver</Link>
+        </li>
+        <li>
+          <div>
+            <form action="">
+              <div>
+                <input
+                  onChange={handleInput}
+                  type="text"
+                  id="search"
+                  placeholder="Search..."
+                ></input>
+                <button onClick={handleButton}>Search</button>
+              </div>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  );
 };
 
 export default Nav;
