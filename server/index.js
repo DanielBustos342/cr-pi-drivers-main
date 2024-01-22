@@ -1,6 +1,7 @@
+require("dotenv").config();
 const server = require("./src/server");
 const { conn } = require("./src/db.js");
-const PORT = 3002;
+const PORT = process.env.PORT || 3001;
 
 conn
   .sync({ force: false }) //alter: true (es para hacer cambios pequeños)

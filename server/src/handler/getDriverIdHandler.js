@@ -1,6 +1,6 @@
-const getDriverById = require("../controllers/getDriverById.js");
+const { getDriverById } = require("../controllers/driverController.js");
 
-module.exports = async (req, res) => {
+const DriverByIdHandler = async (req, res) => {
   try {
     const { id } = req.params;
     const driver = await getDriverById(id);
@@ -9,3 +9,5 @@ module.exports = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+module.exports = DriverByIdHandler;

@@ -10,18 +10,20 @@ module.exports = (sequelize) => {
     "Team",
     {
       id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING,
-        unique: true,
+        type: DataTypes.STRING(20),
         allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "The name is required",
+          },
+        },
       },
     },
-    {
-      timestamps: false,
-    }
+    { freezeTableName: true, Timetamps: false }
   );
 };

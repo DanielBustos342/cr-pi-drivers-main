@@ -1,7 +1,6 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const DriverFunction = require("./models/Driver.js");
-const TeamFunction = require("./models/team.js");
+
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, PORT, BDD } = process.env;
@@ -11,15 +10,9 @@ const sequelize = new Sequelize(
   {
     logging: false,
     native: false,
+    alter: false,
   }
 );
-
-DriverFunction(sequelize);
-TeamFunction(sequelize);
-
-const { Driver, Team } = sequelize.models;
-Driver.belongsToMany(Team, { through: "DriverTeam" });
-Team.belongsToMany(Driver, { through: "DriverTeam" });
 
 const basename = path.basename(__filename);
 
@@ -42,6 +35,10 @@ let capsEntries = entries.map((entry) => [
   entry[1],
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
+
+const { Driver, Team } = sequelize.models;
+Driver.belongsToMany(Team, { through: "DriverTeam", timestamps: false });
+Team.belongsToMany(Driver, { through: "DriverTeam", timestamps: false });
 
 module.exports = {
   ...sequelize.models,

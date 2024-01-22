@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const driversRouter = require("./driversRouter.js");
-const teamsRouter = require("./teamsRouter.js");
+const driverRoutes = require("./driverRoutes");
+const teamRoutes = require("./teamRouter");
 
 const router = Router();
 
-router.use("/drivers", driversRouter);
-router.use("teams", teamsRouter);
+router.use("/drivers", driverRoutes);
+router.use("/teams", teamRoutes);
 
 module.exports = router;
