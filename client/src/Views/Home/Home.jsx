@@ -42,10 +42,10 @@ const Home = () => {
   const filter = (event) => {
     if (event.target.name === "filter-teams")
       dispatch(filterTeam(event.target.value));
-    if (event.taget.name === "filter-order")
+    if (event.target.name === "filter-order")
       dispatch(filterOrder(event.target.value));
     if (event.target.name === "filter-origin")
-      dispatch(filterOrigin(event.taget.value));
+      dispatch(filterOrigin(event.target.value));
   };
 
   const handleRefresh = () => {

@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ image, forename, surname, teams }) => {
+const Card = ({ image, name, teams }) => {
   return (
     <div>
       <div>
-        <h3>{`${forename} ${surname}`}</h3>
+        <h3>{name}</h3>
       </div>
       <div>
-        <img src={image} alt={`${forename} ${surname}`} />
+        <img src={image} alt={name} />
       </div>
       <div>
         <p>{teams}</p>

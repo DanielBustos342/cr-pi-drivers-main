@@ -9,14 +9,14 @@ import {
   FILTER_ORDER,
   FILTER_ORIGIN,
   CLEAN_DETAIL,
-} from "./actions-types.js";
+} from "./actions-types";
 import axios from "axios";
 
 const URL_DRIVERS = "/drivers";
 const URL_TEAMS = "/teams";
 
 export const getDrivers = () => {
-  return async function (dispatch) {
+  return async (dispatch) => {
     try {
       const { data } = await axios(URL_DRIVERS);
       return dispatch({
@@ -70,7 +70,7 @@ export const changePage = (order) => {
   };
 };
 
-export const searchDriver = (name) => {
+export const SearchDriver = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios(`${URL_DRIVERS}?name=${name}`);
@@ -79,7 +79,7 @@ export const searchDriver = (name) => {
         payload: data,
       });
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.error);
     }
   };
 };

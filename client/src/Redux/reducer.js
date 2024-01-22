@@ -9,7 +9,7 @@ import {
   PAGINATION,
   REFRESH,
   SEARCH_DRIVER,
-} from "./actions-types.js";
+} from "./actions-types";
 
 const initialState = {
   drivers: [],
@@ -19,13 +19,13 @@ const initialState = {
   currentPage: 0,
 };
 
-const rootReducer = (state = initialState, action) => {
-  const itemsPage = 9;
+const reducer = (state = initialState, action) => {
+  const items_Page = 9;
   switch (action.type) {
     case GET_DRIVERS:
       return {
         ...state,
-        drivers: [...action.payload].splice(0, itemsPage),
+        drivers: [...action.payload].splice(0, items_Page),
         driversBackUp: action.payload,
       };
     case GET_TEAMS:
@@ -33,19 +33,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         teams: action.payload,
       };
-    case GET_DRIVER_ID: {
+    case GET_DRIVER_ID:
       return {
         ...state,
         driverDetail: action.payload,
       };
-    }
     case PAGINATION:
       const next_page = state.currentPage + 1;
       const prev_page = state.currentPage - 1;
       const firstIndex =
         action.payload === "next"
-          ? next_page * itemsPage
-          : prev_page * itemsPage;
+          ? next_page * items_Page
+          : prev_page * items_Page;
 
       if (action.payload === "next" && firstIndex >= state.driversBackUp.length)
         return state;
@@ -53,38 +52,38 @@ const rootReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        drivers: [...state.driversBackUp].splice(firstIndex, itemsPage),
+        drivers: [...state.driversBackUp].splice(firstIndex, items_Page),
         currentPage: action.payload === "next" ? next_page : prev_page,
       };
     case SEARCH_DRIVER:
       return {
         ...state,
-        drivers: [...action.payload].splice(0, itemsPage),
+        drivers: [...action.payload].splice(0, items_Page),
       };
     case FILTER_TEAM:
       if (action.payload === "------")
         return {
           ...state,
-          drivers: [...state.driversBackUp].splice(0, itemsPage),
+          drivers: [...state.driversBackUp].splice(0, items_Page),
         };
       return {
         ...state,
         drivers: [...state.driversBackUp]
           .filter((driver) => driver.Teams?.includes(action.payload))
-          .splice(0, itemsPage),
+          .splice(0, items_Page),
       };
     case FILTER_ORDER:
       if (action.payload === "------")
         return {
           ...state,
-          drivers: [...state.driversBackUp].splice(0, itemsPage),
+          drivers: [...state.driversBackUp].splice(0, items_Page),
         };
       if (action.payload === "asc") {
         return {
           ...state,
           drivers: [...state.driversBackUp]
             .sort((a, b) => new Date(a.birthdate) - new Date(b.birthdate))
-            .splice(0, itemsPage),
+            .splice(0, items_Page),
         };
       }
       if (action.payload === "desc") {
@@ -92,21 +91,21 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           drivers: [...state.driversBackUp]
             .sort((a, b) => new Date(b.birthdate) - new Date(a.birthdate))
-            .splice(0, itemsPage),
+            .splice(0, items_Page),
         };
       }
     case FILTER_ORIGIN:
       if (action.payload === "all-drivers")
         return {
           ...state,
-          drivers: [...state.driversBackUp].splice(0, itemsPage),
+          drivers: [...state.driversBackUp].splice(0, items_Page),
         };
       if (action.payload === "api") {
         return {
           ...state,
           drivers: [...state.driversBackUp]
             .filter((driver) => !isNaN(driver.id))
-            .splice(0, itemsPage),
+            .splice(0, items_Page),
         };
       }
       if (action.payload === "created") {
@@ -114,13 +113,13 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           drivers: [...state.driversBackUp]
             .filter((driver) => isNaN(driver.id))
-            .splice(0, itemsPage),
+            .splice(0, items_Page),
         };
       }
     case REFRESH:
       return {
         ...state,
-        drivers: [...state.driversBackUp].splice(0, itemsPage),
+        drivers: [...state.driversBackUp].splice(0, items_Page),
         currentPage: 0,
       };
     case CLEAN_DETAIL:
@@ -128,9 +127,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         driverDetail: {},
       };
+
     default:
       return { ...state };
   }
 };
 
-export default rootReducer;
+export default reducer;

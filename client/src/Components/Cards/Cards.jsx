@@ -8,8 +8,7 @@ const Cards = ({ drivers }) => {
         <Card
           key={driver.id}
           id={driver.id}
-          forename={driver.forename}
-          surname={driver.surname}
+          name={driver.name}
           image={driver.image}
           teams={driver.Teams?.join(", ")}
         />

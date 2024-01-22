@@ -38,8 +38,8 @@ const Nav = () => {
           <Link to="/form">Register Driver</Link>
         </li>
         <li>
-          <div>
-            <form action="">
+          <section>
+            <form autoComplete="off">
               <div>
                 <input
                   onChange={handleInput}
@@ -50,7 +50,7 @@ const Nav = () => {
                 <button onClick={handleButton}>Search</button>
               </div>
             </form>
-          </div>
+          </section>
         </li>
       </ul>
     </nav>
