@@ -31,8 +31,8 @@ const Details = () => {
         <h2>ID: {driverDetail?.id}</h2>
         <h2>NAME: {driverDetail?.name}</h2>
         <h3>LASTNAME: {driverDetail?.lastname}</h3>
-        <h3>NATIONALITY: {driverDetail?.nationality}</h3>
-        <h3>BIRTHDATE: {driverDetail?.brithdate}</h3>
+        <h3>NACIONALITY: {driverDetail?.nacionality}</h3>
+        <h3>BIRTHDATE: {driverDetail?.birthdate}</h3>
         <h3>DESCRIPTION: {driverDetail?.description}</h3>
         <h3>TEAMS: {driverDetail?.Teams?.join(", ")}</h3>
       </div>
