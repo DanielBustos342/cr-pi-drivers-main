@@ -70,7 +70,7 @@ export const changePage = (order) => {
   };
 };
 
-export const SearchDriver = (name) => {
+export const searchDriver = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios(`${URL_DRIVERS}?name=${name}`);

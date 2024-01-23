@@ -1,14 +1,35 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchDriver } from "../../Redux/actions.js";
 
 const Searchbar = () => {
+  const dispatch = useDispatch();
+  const [input, setInput] = useState("");
+
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
+
+  const handleButton = (event) => {
+    event.preventDefault();
+    dispatch(searchDriver(input));
+    document.getElementById("search").value = "";
+  };
   return (
     <div>
-      <div>
-        <input type="text" placeholder="Write a name" />
-      </div>
-      <div>
-        <button>Search</button>
-      </div>
+      <section>
+        <form autoComplete="off">
+          <div>
+            <input
+              onChange={handleInput}
+              type="text"
+              id="search"
+              placeholder="Search..."
+            ></input>
+            <button onClick={handleButton}>Search</button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 };
