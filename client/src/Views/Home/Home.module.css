@@ -5,31 +5,7 @@
 
 .containerBodyHome {
   background: rgb(255, 38, 0);
-  background: radial-gradient(circle, rgb(192, 29, 0) 0%, rgb(0, 0, 0) 100%);
-}
-
-aside {
-  width: 200px;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 70px;
-  padding-top: 70px;
-  background: rgb(221, 32, 128);
-  background: radial-gradient(
-    circle,
-    rgba(184, 29, 29, 0.637) 0%,
-    rgb(109, 43, 32) 100%
-  );
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 10px;
+  background: radial-gradient(circle, rgb(83, 13, 0) 0%, rgb(24, 24, 24) 100%);
 }
 
 .containerPageNextPrev {
@@ -42,6 +18,7 @@ aside {
   font-size: 25px;
   float: left;
   width: 29%;
+  padding-left: 40px;
 }
 
 .navNextPrev {
@@ -73,4 +50,47 @@ aside {
 .buttonPage:hover {
   cursor: pointer;
   box-shadow: 1px 1px 10px rgb(255, 255, 255);
+}
+
+aside {
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 70px;
+  padding-top: 70px;
+  background: rgb(221, 32, 128);
+  background: radial-gradient(
+    circle,
+    rgba(184, 29, 29, 0.637) 0%,
+    rgb(109, 43, 32) 100%
+  );
+}
+.containerFiltred {
+  display: flex;
+  color: #fff;
+  font-size: 20px;
+}
+
+.containerFiltred li {
+  margin-bottom: 10px;
+  margin-left: 70px;
+  justify-content: start;
+}
+
+.inputAside {
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  right: 50px;
+}
+
+.containerTeams {
+  background-color: blueviolet;
+  padding: 30px 0;
+}
+
+.containerOrder {
+  background-color: springgreen;
+  padding: 20px 0;
 }

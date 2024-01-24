@@ -59,35 +59,38 @@ const Home = () => {
   return (
     <div className={style.containerHome}>
       <aside>
-        <div>
+        <div className={style.containerFiltred}>
           <ul>
             <li>
               <input
-                type="checkbox"
+                type="radio"
                 id="all-drivers"
                 name="filter-origin"
                 value="all-drivers"
                 onChange={filter}
+                className={style.inputAside}
               />
               <label htmlFor="all-drivers">All Drivers</label>
             </li>
             <li>
               <input
-                type="checkbox"
+                type="radio"
                 id="created"
                 name="filter-origin"
                 value="created"
                 onChange={filter}
+                className={style.inputAside}
               />
               <label htmlFor="created">Created</label>
             </li>
             <li>
               <input
-                type="checkbox"
+                type="radio"
                 id="api"
                 name="filter-origin"
                 value="api"
                 onChange={filter}
+                className={style.inputAside}
               />
               <label htmlFor="api">API</label>
             </li>
@@ -99,7 +102,7 @@ const Home = () => {
             <option value="created">Created</option>
             <option value="api">API</option>
           </select> */}
-        <div>
+        <div className={style.containerTeams}>
           <select id="select-2" name="filter-teams" onChange={filter}>
             <option value="------">TEAMS</option>
             {teams?.map((team, index) => (
@@ -109,7 +112,7 @@ const Home = () => {
             ))}
           </select>
         </div>
-        <div>
+        <div className={style.containerOrder}>
           <select id="select-3" name="filter-order" onChange={filter}>
             <option value="------">------</option>
             <option value="asc">Ascendant</option>
