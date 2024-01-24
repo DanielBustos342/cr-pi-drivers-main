@@ -58,28 +58,6 @@ const Home = () => {
 
   return (
     <div className={style.containerHome}>
-      <div>
-        <h3>Page: {currentPage + 1}</h3>
-      </div>
-
-      <div className={style.containerNextPrev}>
-        <ul className={style.navNextPrev}>
-          <li>
-            <button onClick={pagination} name="prev">
-              {"<<"}
-            </button>
-          </li>
-          <li>
-            <button onClick={handleRefresh}>Refresh</button>
-          </li>
-          <li>
-            <button onClick={pagination} name="next">
-              {">>"}
-            </button>
-          </li>
-        </ul>
-      </div>
-
       <aside>
         <div>
           <ul>
@@ -139,7 +117,72 @@ const Home = () => {
           </select>
         </div>
       </aside>
-      <Cards drivers={drivers} />
+      <div className={style.containerBodyHome}>
+        <div className={style.containerPageNextPrev}>
+          <div className={style.containerPage}>
+            <h3>Page: {currentPage + 1}</h3>
+          </div>
+          <ul className={style.navNextPrev}>
+            <li>
+              <button
+                onClick={pagination}
+                name="prev"
+                className={style.buttonPage}
+              >
+                {"<< Prev"}
+              </button>
+            </li>
+            <li>
+              <button onClick={handleRefresh} className={style.buttonPage}>
+                Refresh
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={pagination}
+                name="next"
+                className={style.buttonPage}
+              >
+                {"Next >>"}
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <Cards drivers={drivers} />
+        <div className={style.containerPageNextPrev}>
+          <div className={style.containerPage}>
+            <h3>Page: {currentPage + 1}</h3>
+          </div>
+          <div className={style.containerNextPrev}>
+            <ul className={style.navNextPrev}>
+              <li>
+                <button
+                  onClick={pagination}
+                  name="prev"
+                  className={style.buttonPage}
+                >
+                  {"<< Prev"}
+                </button>
+              </li>
+              <li>
+                <button onClick={handleRefresh} className={style.buttonPage}>
+                  Refresh
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={pagination}
+                  name="next"
+                  className={style.buttonPage}
+                >
+                  {"Next >>"}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

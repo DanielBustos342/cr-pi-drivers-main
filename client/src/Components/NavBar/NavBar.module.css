@@ -5,13 +5,20 @@
 }
 
 nav {
-  background-color: rgb(211, 20, 20); /* Color azul de Facebook */
+  background: rgb(255, 72, 49);
+  background: linear-gradient(
+    120deg,
+    rgba(255, 72, 49, 1) 0%,
+    rgba(170, 2, 2, 1) 49%,
+    rgba(255, 136, 0, 0.9976365546218487) 100%
+  );
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   width: 100%;
   height: 70px;
+  border-bottom: solid 2px #000;
 }
 .navLinks {
   list-style: none;

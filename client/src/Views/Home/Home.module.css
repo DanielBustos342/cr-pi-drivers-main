@@ -1,11 +1,26 @@
+.containerHome {
+  padding-top: 70px;
+  padding-left: 200px;
+}
+
+.containerBodyHome {
+  background: rgb(255, 38, 0);
+  background: radial-gradient(circle, rgb(192, 29, 0) 0%, rgb(0, 0, 0) 100%);
+}
+
 aside {
-  background-color: #f0f2f5; /* Color de fondo de la barra lateral */
   width: 200px;
   height: 100vh;
   position: fixed;
   left: 0;
-  top: 80px;
-  padding-top: 70px; /* Altura de la barra de navegación */
+  top: 70px;
+  padding-top: 70px;
+  background: rgb(221, 32, 128);
+  background: radial-gradient(
+    circle,
+    rgba(184, 29, 29, 0.637) 0%,
+    rgb(109, 43, 32) 100%
+  );
 }
 
 .sidebar ul {
@@ -17,23 +32,45 @@ aside {
   padding: 10px;
 }
 
-.containerHome {
-  padding-top: 100px;
-  padding-left: 200px;
+.containerPageNextPrev {
+  overflow: auto;
+  padding: 35px 0px;
 }
 
-.containerNextPrev {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.containerPage h3 {
+  color: #fff;
+  font-size: 25px;
+  float: left;
+  width: 29%;
 }
 
 .navNextPrev {
   display: flex;
+  float: left;
   list-style: none;
-  padding: 20px;
+  width: 50%;
 }
 
 .navNextPrev li {
-  padding-left: 50px;
+  margin-left: 40px;
+}
+
+.buttonPage {
+  padding: 7px 17px;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 600;
+  background: rgb(255, 38, 0);
+  background: radial-gradient(
+    circle,
+    rgb(255, 38, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  border: none;
+  border-radius: 15px;
+}
+
+.buttonPage:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 10px rgb(255, 255, 255);
 }

@@ -25,18 +25,17 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  top: -170px;
+  top: -120px;
 }
 
 .landingBtn {
-  padding: 30px 90px;
+  padding: 20px 50px;
   background-color: transparent;
   border: none;
-  font-size: 40px;
+  font-size: 30px;
   position: relative;
   justify-content: center;
   align-items: center;
-  transition: 500ms;
   cursor: pointer;
 }
 
@@ -46,7 +45,6 @@
   justify-content: center;
   align-items: center;
   transition: 300ms;
-  transition-delay: 300ms;
   font-size: 70px;
   letter-spacing: 2px;
   font-weight: 600;
@@ -62,8 +60,7 @@
   right: 50%;
   top: 50%;
   bottom: 50%;
-  transition: 200ms;
-  transition-delay: 200ms;
+  transition: 400ms;
   background-color: red;
   box-shadow: 0 0 10px red, 0 0 30px red, 0 0 50px red;
 }

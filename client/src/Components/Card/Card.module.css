@@ -1,12 +1,18 @@
 .containerCard {
   width: 250px;
-  height: 310px;
+  height: 400px;
   max-width: 1200px;
   margin: 20px auto;
+  border-radius: 10px;
   grid-template-columns: var(--columns);
   grid-template-rows: var(--rows);
-  border: solid 1px;
-  background-color: aqua;
+  background: rgb(255, 72, 49);
+  background: linear-gradient(
+    120deg,
+    rgba(255, 72, 49, 0.8603816526610644) 0%,
+    rgba(170, 2, 2, 0.8939950980392157) 49%,
+    rgba(255, 136, 0, 0.8267682072829132) 100%
+  );
 }
 
 .cardName {
@@ -25,17 +31,17 @@
   font-size: 15px;
 }
 
-.containerImage {
-  background-color: brown;
-}
-
 .containerImage img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 248px;
-  height: 200px;
+  width: 250px;
+  height: 300px;
   justify-content: center;
   align-items: center;
-  object-fit: cover;
+  object-fit: cover scale-down;
+}
+
+.containerCard:hover {
+  cursor: pointer;
 }
