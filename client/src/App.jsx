@@ -5,6 +5,7 @@ import Home from "./Views/Home/Home";
 import Form from "./Views/Form/Form";
 import Details from "./Views/Details/Details";
 import NavBar from "./Components/NavBar/NavBar";
+import About from "./Views/About/About";
 
 function App() {
   //!este codigo es para hacer que la pagina de inicio ande correctamente
@@ -31,6 +32,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/form" element={<Form />} />
         <Route path="/detail/:id" element={<Details />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );

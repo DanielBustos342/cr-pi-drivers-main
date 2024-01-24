@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  background-color: red; /* Color azul de Facebook */
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+}
+
+.navLinks {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  display: flex; /* Hace que los elementos de la lista se muestren en línea */
+}
+
+li {
+  margin-right: 20px;
+}

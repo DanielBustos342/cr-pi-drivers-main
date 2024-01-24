@@ -1,0 +1,39 @@
+aside {
+  background-color: #f0f2f5; /* Color de fondo de la barra lateral */
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 80px;
+  padding-top: 70px; /* Altura de la barra de navegación */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+}
+
+.containerHome {
+  padding-top: 100px;
+  padding-left: 200px;
+}
+
+.containerNextPrev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navNextPrev {
+  display: flex;
+  list-style: none;
+  padding: 20px;
+}
+
+.navNextPrev li {
+  padding-left: 50px;
+}

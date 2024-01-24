@@ -23,6 +23,7 @@ import {
   filterOrigin,
 } from "../../Redux/actions.js";
 import Cards from "../../Components/Cards/Cards.jsx";
+import style from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -56,49 +57,89 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className={style.containerHome}>
       <div>
-        <div>
-          <h3>Page: {currentPage + 1}</h3>
-        </div>
-        <div>
-          <button onClick={pagination} name="prev">
-            {"<<"}
-          </button>
-          <button onClick={handleRefresh}> Refresh</button>
+        <h3>Page: {currentPage + 1}</h3>
+      </div>
 
-          <select id="select-1" name="filter-origin" onChange={filter}>
+      <div className={style.containerNextPrev}>
+        <ul className={style.navNextPrev}>
+          <li>
+            <button onClick={pagination} name="prev">
+              {"<<"}
+            </button>
+          </li>
+          <li>
+            <button onClick={handleRefresh}>Refresh</button>
+          </li>
+          <li>
+            <button onClick={pagination} name="next">
+              {">>"}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <aside>
+        <div>
+          <ul>
+            <li>
+              <input
+                type="checkbox"
+                id="all-drivers"
+                name="filter-origin"
+                value="all-drivers"
+                onChange={filter}
+              />
+              <label htmlFor="all-drivers">All Drivers</label>
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="created"
+                name="filter-origin"
+                value="created"
+                onChange={filter}
+              />
+              <label htmlFor="created">Created</label>
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                id="api"
+                name="filter-origin"
+                value="api"
+                onChange={filter}
+              />
+              <label htmlFor="api">API</label>
+            </li>
+          </ul>
+        </div>
+
+        {/* <select id="select-1" name="filter-origin" onChange={filter}>
             <option value="all-drivers">All Drivers</option>
             <option value="created">Created</option>
             <option value="api">API</option>
-          </select>
-
+          </select> */}
+        <div>
           <select id="select-2" name="filter-teams" onChange={filter}>
-            <option value="------">------</option>
+            <option value="------">TEAMS</option>
             {teams?.map((team, index) => (
               <option key={index} value={team}>
                 {team}
               </option>
             ))}
           </select>
-
+        </div>
+        <div>
           <select id="select-3" name="filter-order" onChange={filter}>
             <option value="------">------</option>
             <option value="asc">Ascendant</option>
             <option value="desc">Descending</option>
           </select>
-
-          <button onClick={pagination} name="next">
-            {">>"}
-          </button>
         </div>
-      </div>
-
-      <div>
-        <div>
-          <Cards drivers={drivers} />
-        </div>
-      </div>
+      </aside>
+      <Cards drivers={drivers} />
     </div>
   );
 };

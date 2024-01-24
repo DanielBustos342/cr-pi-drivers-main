@@ -1,0 +1,5 @@
+.containerCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: solid 5px;
+}
