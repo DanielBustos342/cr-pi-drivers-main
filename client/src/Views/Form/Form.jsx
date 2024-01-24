@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createDriver, getTeams } from "../../Redux/actions.js";
 import Card from "../../Components/Card/Card.jsx";
 import validation from "./validation.js";
+import style from "./Form.module.css";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -121,113 +122,117 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>CREATING DRIVE</h2>
+    <div className={style.containerForm}>
+      <form onSubmit={handleSubmit} className={style.formulario}>
+        <div className={style.rightForm}>
+          <h2>CREATING DRIVE</h2>
 
-        <fieldset>
-          <legend>
-            <h3>DRIVER INFORMATION</h3>
-          </legend>
+          <fieldset>
+            <legend>
+              <h3>DRIVER INFORMATION</h3>
+            </legend>
+
+            <label>
+              NAME:
+              <input
+                onChange={handleInput}
+                value={form.name}
+                type="text"
+                name="name"
+                placeholder="Write..."
+              />
+              <div>{errors.name}</div>
+            </label>
+
+            <label>
+              LASTNAME:
+              <input
+                onChange={handleInput}
+                value={form.lastname}
+                type="text"
+                name="lastname"
+                placeholder="write..."
+              />
+              <div>{errors.lastname}</div>
+            </label>
+
+            <label>
+              NACIONALITY:
+              <input
+                onChange={handleInput}
+                value={form.nacionality}
+                type="text"
+                name="nacionality"
+                placeholder="write..."
+              />
+              <div>{errors.nacionality}</div>
+            </label>
+
+            <label>
+              BIRTHDATE:
+              <input
+                onChange={handleInput}
+                value={form.birthdate}
+                type="date"
+                name="birthdate"
+                placeholder="write..."
+              />
+              <div>{errors.birthdate}</div>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              <h3>ADDTIONAL INFORMATION</h3>
+            </legend>
+
+            <div>
+              <label>TEAMS: </label>
+              <select onChange={handleInput} name="teams" id="teams">
+                <option value="------"> ------ </option>
+                {teams?.map((team, index) => (
+                  <option key={index} value={team}>
+                    {team}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {inputTeam.length ? inputTeam.map((e) => e) : null}
+            <button onClick={addTeam}> + </button>
+          </fieldset>
 
           <label>
-            NAME:
+            IMAGE:
             <input
               onChange={handleInput}
-              value={form.name}
+              value={form.image}
+              name="image"
               type="text"
-              name="name"
-              placeholder="Write..."
+              placeholder="ingresa imagen poner una de ejemplo"
             />
-            <div>{errors.name}</div>
+            <div>{errors.image}</div>
           </label>
-
-          <label>
-            LASTNAME:
-            <input
-              onChange={handleInput}
-              value={form.lastname}
-              type="text"
-              name="lastname"
-              placeholder="write..."
-            />
-            <div>{errors.lastname}</div>
-          </label>
-
-          <label>
-            NACIONALITY:
-            <input
-              onChange={handleInput}
-              value={form.nacionality}
-              type="text"
-              name="nacionality"
-              placeholder="write..."
-            />
-            <div>{errors.nacionality}</div>
-          </label>
-
-          <label>
-            BIRTHDATE:
-            <input
-              onChange={handleInput}
-              value={form.birthdate}
-              type="date"
-              name="birthdate"
-              placeholder="write..."
-            />
-            <div>{errors.birthdate}</div>
-          </label>
-        </fieldset>
-
-        <fieldset>
-          <legend>
-            <h3>ADDTIONAL INFORMATION</h3>
-          </legend>
 
           <div>
-            <label>TEAMS: </label>
-            <select onChange={handleInput} name="teams" id="teams">
-              <option value="------"> ------ </option>
-              {teams?.map((team, index) => (
-                <option key={index} value={team}>
-                  {team}
-                </option>
-              ))}
-            </select>
+            DESCRIPTION:
+            <textarea
+              onChange={handleInput}
+              value={form.description}
+              typeof="text"
+              name="description"
+              placeholder="write..."
+              cols="30"
+              rows="10"
+            ></textarea>
+            <div>{errors.description}</div>
           </div>
-          {inputTeam.length ? inputTeam.map((e) => e) : null}
-          <button onClick={addTeam}> + </button>
-        </fieldset>
 
-        <label>
-          IMAGE:
-          <input
-            onChange={handleInput}
-            value={form.image}
-            name="image"
-            type="text"
-            placeholder="ingresa imagen poner una de ejemplo"
-          />
-          <div>{errors.image}</div>
-        </label>
-
-        <div>
-          DESCRIPTION:
-          <textarea
-            onChange={handleInput}
-            value={form.description}
-            typeof="text"
-            name="description"
-            placeholder="write..."
-            cols="30"
-            rows="10"
-          ></textarea>
-          <div>{errors.description}</div>
+          <button type="submit">REGISTER</button>
         </div>
-
-        <button type="submit">REGISTER</button>
+        <div className={style.leftForm}>
+          <Card name={form.name} image={form.image} Teams={form.Teams} />
+        </div>
       </form>
-      <Card name={form.name} image={form.image} Teams={form.Teams} />
     </div>
   );
 };

@@ -1,25 +1,41 @@
 .containerCard {
   width: 250px;
-  height: 380px;
+  height: 310px;
   max-width: 1200px;
-  margin: 15px auto;
-  display: grid;
+  margin: 20px auto;
   grid-template-columns: var(--columns);
   grid-template-rows: var(--rows);
-  border: solid 2px;
+  border: solid 1px;
+  background-color: aqua;
 }
 
+.cardName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 25px;
+}
 
-.contarinerImage {
-  content: "";
-  display: block;
-  width: 100%;
+.cardTeams {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 15px;
+}
+
+.containerImage {
+  background-color: brown;
+}
+
+.containerImage img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 248px;
   height: 200px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.imgCard {
-  width: 120px;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchDriver } from "../../Redux/actions.js";
+import style from "./SearchBar.module.css";
 
 const Searchbar = () => {
   const dispatch = useDispatch();
@@ -19,14 +20,21 @@ const Searchbar = () => {
     <div>
       <section>
         <form autoComplete="off">
-          <div>
+          <div className={style.containerSearch}>
             <input
               onChange={handleInput}
               type="text"
               id="search"
               placeholder="Search..."
+              className={style.inputSearchNav}
             ></input>
-            <button onClick={handleButton}>Search</button>
+            <button onClick={handleButton} className={style.buttonSearh}>
+              <span>Search</span>
+              <div class="top"></div>
+              <div class="left"></div>
+              <div class="bottom"></div>
+              <div class="right"></div>
+            </button>
           </div>
         </form>
       </section>
