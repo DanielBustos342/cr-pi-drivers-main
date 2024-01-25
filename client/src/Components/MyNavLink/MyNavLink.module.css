@@ -5,6 +5,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .containerNavLink button span {

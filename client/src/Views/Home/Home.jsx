@@ -96,27 +96,41 @@ const Home = () => {
             </li>
           </ul>
         </div>
-
-        {/* <select id="select-1" name="filter-origin" onChange={filter}>
-            <option value="all-drivers">All Drivers</option>
-            <option value="created">Created</option>
-            <option value="api">API</option>
-          </select> */}
+        <div className={style.titleTeam}>Order by Team</div>
         <div className={style.containerTeams}>
-          <select id="select-2" name="filter-teams" onChange={filter}>
-            <option value="------">TEAMS</option>
+          <select
+            id="select-2"
+            name="filter-teams"
+            onChange={filter}
+            className={style.selectTeams}
+          >
+            <option value="------" className={style.option}>
+              All
+            </option>
             {teams?.map((team, index) => (
-              <option key={index} value={team}>
+              <option key={index} value={team} className={style.option}>
                 {team}
               </option>
             ))}
           </select>
         </div>
+        <div className={style.titleTeam}>Order Asc or Desc</div>
         <div className={style.containerOrder}>
-          <select id="select-3" name="filter-order" onChange={filter}>
-            <option value="------">------</option>
-            <option value="asc">Ascendant</option>
-            <option value="desc">Descending</option>
+          <select
+            id="select-3"
+            name="filter-order"
+            onChange={filter}
+            className={style.selectTeams}
+          >
+            <option value="------" className={style.option}>
+              ------
+            </option>
+            <option value="asc" className={style.option}>
+              Ascendant
+            </option>
+            <option value="desc" className={style.option}>
+              Descending
+            </option>
           </select>
         </div>
       </aside>
