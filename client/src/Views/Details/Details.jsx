@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { cleanDriverDetail, getDriverById } from "../../Redux/actions";
+import style from "./Details.module.css";
 
 const Details = () => {
   const { id } = useParams();
@@ -26,18 +27,32 @@ const Details = () => {
   }, [id]);
 
   return (
-    <div>
-      <div>
-        <h2>ID: {driverDetail?.id}</h2>
-        <h2>NAME: {driverDetail?.name}</h2>
-        <h3>LASTNAME: {driverDetail?.lastname}</h3>
-        <h3>NACIONALITY: {driverDetail?.nacionality}</h3>
-        <h3>BIRTHDATE: {driverDetail?.birthdate}</h3>
-        <h3>DESCRIPTION: {driverDetail?.description}</h3>
-        <h3>TEAMS: {driverDetail?.Teams?.join(", ")}</h3>
-      </div>
-      <div>
-        <img src={driverDetail?.image} alt={driverDetail?.name} />
+    <div className={style.containerDetails}>
+      <div className={style.detailCard}>
+        <div className={style.containerImgDetail}>
+          <img
+            src={driverDetail?.image}
+            alt={driverDetail?.name}
+            className={style.detailImg}
+          />
+        </div>
+        <h2 className={style.detailId}>ID: {driverDetail?.id}</h2>
+        <h2 className={style.detailId}>NAME: {driverDetail?.name}</h2>
+        <h3 className={style.detailsDatos}>
+          LASTNAME: {driverDetail?.lastname}
+        </h3>
+        <h3 className={style.detailsDatos}>
+          NACIONALITY: {driverDetail?.nacionality}
+        </h3>
+        <h3 className={style.detailsDatos}>
+          BIRTHDATE: {driverDetail?.birthdate}
+        </h3>
+        <h3 className={style.detailsDatos}>
+          TEAMS: {driverDetail?.Teams?.join(", ")}
+        </h3>
+        <h3 className={style.details}>
+          DESCRIPTION: {driverDetail?.description}
+        </h3>
       </div>
     </div>
   );

@@ -1,0 +1,60 @@
+.containerDetails {
+  padding-top: 70px;
+  height: 100vh;
+  background: rgb(255, 38, 0);
+  background: radial-gradient(
+    circle,
+    rgba(255, 38, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 51%
+  );
+}
+
+.detailCard {
+  color: #fff;
+  width: 800px;
+  height: 450px;
+  margin: 50px auto;
+  border: solid 1px #fff;
+  padding: 25px;
+  border-radius: 5px;
+}
+
+.detailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.containerImgDetail {
+  width: 180px;
+  height: 200px;
+  float: left;
+  margin-right: 25px;
+  box-shadow: 1px 1px 10px rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.detailId {
+  margin-bottom: 10px;
+  font-size: 28px;
+  text-shadow: 1px 1px 20px rgb(255, 255, 255);
+}
+
+.detailsDatos {
+  margin: 10px;
+  font-size: 19px;
+  text-shadow: 3px 3px 10px rgb(255, 0, 0);
+}
+
+.details {
+  height: 180px;
+  font-size: 20px;
+  text-shadow: 3px 3px 10px rgb(0, 0, 0);
+  overflow-y: scroll;
+  border: solid 1px #fff;
+  padding: 10px;
+  text-align: justify;
+  border-radius: 5px;
+  margin-top: 25px;
+}
