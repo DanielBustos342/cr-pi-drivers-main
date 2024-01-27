@@ -31,15 +31,23 @@
   font-size: 15px;
 }
 
-.containerImage img {
+.containerImage{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 270px;
+  margin: 0 30px;
+  border-radius: 10px;
+}
+
+.containerImage img {
+  display: flex;
+  width: 240px;
   height: 300px;
   justify-content: center;
   align-items: center;
-  object-fit: cover scale-down;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #b90000;
 }
 
 .containerCard:hover {

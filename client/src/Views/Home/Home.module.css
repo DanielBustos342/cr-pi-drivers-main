@@ -1,6 +1,10 @@
 .containerHome {
   padding-top: 70px;
   padding-left: 200px;
+  max-width: 1349px;
+  min-width: 700px;
+  min-height: 1000px;
+  max-height: 1200px;
 }
 
 .containerBodyHome {

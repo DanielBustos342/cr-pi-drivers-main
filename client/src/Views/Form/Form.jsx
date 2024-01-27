@@ -125,11 +125,11 @@ const Form = () => {
     <div className={style.containerForm}>
       <form onSubmit={handleSubmit} className={style.formulario}>
         <div className={style.rightForm}>
-          <h2>CREATING DRIVE</h2>
+          <h2 className={style.titleForm}>CREATING DRIVE</h2>
 
           <fieldset>
             <legend>
-              <h3>DRIVER INFORMATION</h3>
+              <h3 className={style.titleInfo}>DRIVER INFORMATION</h3>
             </legend>
 
             <label>
@@ -140,6 +140,7 @@ const Form = () => {
                 type="text"
                 name="name"
                 placeholder="Write..."
+                className={style.formData}
               />
               <div>{errors.name}</div>
             </label>
@@ -152,6 +153,7 @@ const Form = () => {
                 type="text"
                 name="lastname"
                 placeholder="write..."
+                className={style.formData}
               />
               <div>{errors.lastname}</div>
             </label>
@@ -164,6 +166,7 @@ const Form = () => {
                 type="text"
                 name="nacionality"
                 placeholder="write..."
+                className={style.formData}
               />
               <div>{errors.nacionality}</div>
             </label>
@@ -176,6 +179,7 @@ const Form = () => {
                 type="date"
                 name="birthdate"
                 placeholder="write..."
+                className={style.formData}
               />
               <div>{errors.birthdate}</div>
             </label>
@@ -183,7 +187,7 @@ const Form = () => {
 
           <fieldset>
             <legend>
-              <h3>ADDTIONAL INFORMATION</h3>
+              <h3 className={style.titleInfo}>ADDTIONAL INFORMATION</h3>
             </legend>
 
             <div>

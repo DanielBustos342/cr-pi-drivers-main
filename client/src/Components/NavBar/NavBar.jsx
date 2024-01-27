@@ -17,12 +17,9 @@ const NavBar = () => {
         <li className={style.liNav}>
           <MyNavLink name="home" />
         </li>
-        <li className={style.liNav}>
-          <MyNavLink name="about" />
-        </li>
       </ul>
       <div className={style.navSearch}>
-        <SearchBar />
+        {location.pathname === "/home" ? <SearchBar /> : null}
       </div>
     </nav>
   );

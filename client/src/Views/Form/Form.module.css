@@ -1,22 +1,53 @@
 .containerForm {
-  padding-top: 100px;
-  background-color: aqua;
-  float: left;
+  padding-top: 70px;
+  background: rgb(245, 0, 0);
+  background: linear-gradient(0deg, rgb(131, 0, 0) 27%, rgb(0, 0, 0) 53%);
+  height: 100vh;
 }
 
 .formulario {
-  border: solid 10px;
-  margin: 0 20px;
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: #fff;
 }
 
 .rightForm {
-  width: 50%;
-  margin: 10px;
-  border: solid 1px red;
+  margin-top: 30px;
+  padding: 20px;
+  height: 450px;
+  border: solid 3px #fff;
+  border-radius: 10px;
 }
 
 .leftForm {
-  width: 30%;
-  margin: 10px;
-  border: solid 1px red;
+  margin-top: 30px;
+  height: 450px;
+}
+
+.titleForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+}
+
+.titleInfo {
+  padding: 10px;
+  font-size: 22px;
+}
+
+fieldset {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: solid 3px;
+}
+
+.formData {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+  padding: 5px;
+  border: none;
 }
