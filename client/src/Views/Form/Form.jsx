@@ -79,7 +79,6 @@ const Form = () => {
     setInputTeam([
       ...inputTeam,
       <div className="form-label" key={cont}>
-        <label htmlFor="teams">Teams:</label>
         <select onChange={handleInput} name="teams" id="teams">
           <option value="------">------</option>
           {teams.map((team, index) => (
@@ -104,7 +103,6 @@ const Form = () => {
     for (const key in form) {
       if (form[key] === "") return alert("Faltan completar algunos datos");
     }
-    // if(Object.keys(errors).length) return alert("Faltan completar algunos datos")
     if (driversRepeat) return alert("The driver is already registered");
     dispatch(createDriver(form));
     alert("driver is created");
@@ -123,76 +121,104 @@ const Form = () => {
 
   return (
     <div className={style.containerForm}>
+      <div>
+        <h2 className={style.titleForm}>CREATING DRIVE</h2>
+      </div>
       <form onSubmit={handleSubmit} className={style.formulario}>
         <div className={style.rightForm}>
-          <h2 className={style.titleForm}>CREATING DRIVE</h2>
-
-          <fieldset>
+          <fieldset className={style.containerForm1}>
             <legend>
               <h3 className={style.titleInfo}>DRIVER INFORMATION</h3>
             </legend>
-
-            <label>
-              NAME:
-              <input
+            <div className={style.containerCampo}>
+              <label className={style.labelForm}>
+                NAME:
+                <input
+                  onChange={handleInput}
+                  value={form.name}
+                  type="text"
+                  name="name"
+                  placeholder="Write..."
+                  className={style.formData}
+                />
+              </label>
+              <div className={style.errorInput}>{errors.name}</div>
+            </div>
+            <div className={style.containerCampo}>
+              <label className={style.labelForm}>
+                LASTNAME:
+                <input
+                  onChange={handleInput}
+                  value={form.lastname}
+                  type="text"
+                  name="lastname"
+                  placeholder="write..."
+                  className={style.formData}
+                />
+              </label>
+              <div className={style.errorInput}>{errors.lastname}</div>
+            </div>
+            <div className={style.containerCampo}>
+              <label className={style.labelForm}>
+                NACIONALITY:
+                <input
+                  onChange={handleInput}
+                  value={form.nacionality}
+                  type="text"
+                  name="nacionality"
+                  placeholder="write..."
+                  className={style.formData}
+                />
+              </label>
+              <div className={style.errorInput}>{errors.nacionality}</div>
+            </div>
+            <div className={style.containerCampo}>
+              <label className={style.labelForm}>
+                BIRTHDATE:
+                <input
+                  onChange={handleInput}
+                  value={form.birthdate}
+                  type="date"
+                  name="birthdate"
+                  placeholder="write..."
+                  className={style.formData}
+                />
+              </label>
+              <div className={style.errorInput}>{errors.birthdate}</div>
+            </div>
+            <div className={style.containerDescription}>
+              DESCRIPTION:
+              <textarea
                 onChange={handleInput}
-                value={form.name}
-                type="text"
-                name="name"
-                placeholder="Write..."
-                className={style.formData}
-              />
-              <div>{errors.name}</div>
-            </label>
-
-            <label>
-              LASTNAME:
-              <input
-                onChange={handleInput}
-                value={form.lastname}
-                type="text"
-                name="lastname"
-                placeholder="write..."
-                className={style.formData}
-              />
-              <div>{errors.lastname}</div>
-            </label>
-
-            <label>
-              NACIONALITY:
-              <input
-                onChange={handleInput}
-                value={form.nacionality}
-                type="text"
-                name="nacionality"
-                placeholder="write..."
-                className={style.formData}
-              />
-              <div>{errors.nacionality}</div>
-            </label>
-
-            <label>
-              BIRTHDATE:
-              <input
-                onChange={handleInput}
-                value={form.birthdate}
-                type="date"
-                name="birthdate"
-                placeholder="write..."
-                className={style.formData}
-              />
-              <div>{errors.birthdate}</div>
-            </label>
+                value={form.description}
+                typeof="text"
+                name="description"
+                placeholder="Must be at least 5 characters"
+                cols="50"
+                rows="8"
+              ></textarea>
+              <div className={style.errorInput}>{errors.description}</div>
+            </div>
           </fieldset>
-
+        </div>
+        <div className={style.midForm}>
           <fieldset>
             <legend>
-              <h3 className={style.titleInfo}>ADDTIONAL INFORMATION</h3>
+              <h3 className={style.titleInfo}>ADD TEAMS</h3>
             </legend>
+            <div className={style.containerAddTeam}>
+              <button onClick={addTeam} className={style.btnAddTeam}>
+                +
+              </button>
+            </div>
 
-            <div>
-              <label>TEAMS: </label>
-              <select onChange={handleInput} name="teams" id="teams">
+            <div className={style.containerTeams}>
+              <select
+                onChange={handleInput}
+                name="teams"
+                id="teams"
+                className={style.selectTeams}
+              >
                 <option value="------"> ------ </option>
                 {teams?.map((team, index) => (
                   <option key={index} value={team}>
@@ -201,37 +227,29 @@ const Form = () => {
                 ))}
               </select>
             </div>
-            {inputTeam.length ? inputTeam.map((e) => e) : null}
-            <button onClick={addTeam}> + </button>
+            <div className={style.selectTeams}>
+              {inputTeam.length ? inputTeam.map((e) => e) : null}
+            </div>
           </fieldset>
-
-          <label>
-            IMAGE:
-            <input
-              onChange={handleInput}
-              value={form.image}
-              name="image"
-              type="text"
-              placeholder="ingresa imagen poner una de ejemplo"
-            />
-            <div>{errors.image}</div>
-          </label>
-
-          <div>
-            DESCRIPTION:
-            <textarea
-              onChange={handleInput}
-              value={form.description}
-              typeof="text"
-              name="description"
-              placeholder="write..."
-              cols="30"
-              rows="10"
-            ></textarea>
-            <div>{errors.description}</div>
+          <div className={style.containerCampoMid}>
+            <label>
+              IMAGE:
+              <input
+                onChange={handleInput}
+                value={form.image}
+                name="image"
+                type="text"
+                placeholder="ingresa imagen poner una de ejemplo"
+                className={style.formData}
+              />
+            </label>
+            <div className={style.errorInputImage}>{errors.image}</div>
           </div>
-
-          <button type="submit">REGISTER</button>
+          <div className={style.containerBtnSubmit}>
+            <button type="submit" className={style.btnSubmit}>
+              REGISTER
+            </button>
+          </div>
         </div>
         <div className={style.leftForm}>
           <Card name={form.name} image={form.image} Teams={form.Teams} />
