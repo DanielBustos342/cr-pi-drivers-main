@@ -72,34 +72,6 @@
   box-shadow: 0 0 15px red, 0 0 30px red, 0 0 50px red;
 }
 
-.landingBtn .top {
-  width: 15px;
-  height: 2px;
-  top: 0;
-  left: 0;
-}
-
-.landingBtn .bottom {
-  width: 15px;
-  height: 2px;
-  bottom: 0;
-  right: 0;
-}
-
-.landingBtn .left {
-  width: 2px;
-  height: 15px;
-  top: 0;
-  left: 0;
-}
-
-.landingBtn .right {
-  width: 2px;
-  height: 15px;
-  bottom: 0;
-  right: 0;
-}
-
 .landingBtn:hover {
   color: #000;
 }

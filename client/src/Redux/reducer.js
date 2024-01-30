@@ -58,19 +58,18 @@ const reducer = (state = initialState, action) => {
     case SEARCH_DRIVER:
       return {
         ...state,
-        drivers: [...action.payload].splice(0, items_Page),
+        drivers: [...action.payload],
       };
     case FILTER_TEAM:
       if (action.payload === "------")
         return {
           ...state,
-          drivers: [...state.driversBackUp].splice(0, items_Page),
+          drivers: [...state.driversBackUp],
         };
       return {
         ...state,
         drivers: [...state.driversBackUp]
-          .filter((driver) => driver.Teams?.includes(action.payload))
-          .splice(0, items_Page),
+          .filter((driver) => driver.Teams?.includes(action.payload)),
       };
     case FILTER_ORDER:
       if (action.payload === "------")

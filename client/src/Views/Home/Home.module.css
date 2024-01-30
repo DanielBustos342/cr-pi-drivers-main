@@ -1,10 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .containerHome {
   padding-top: 70px;
   padding-left: 200px;
-  max-width: 1349px;
-  min-width: 700px;
-  min-height: 1000px;
-  max-height: 1200px;
 }
 
 .containerBodyHome {
@@ -13,23 +15,25 @@
 }
 
 .containerPageNextPrev {
-  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 35px 0px;
+  /* background-color: blueviolet; */
 }
 
 .containerPage h3 {
   color: #fff;
   font-size: 25px;
-  float: left;
-  width: 29%;
-  padding-left: 40px;
+  /* background-color: aqua; */
 }
 
 .navNextPrev {
   display: flex;
-  float: left;
+  justify-content: center;
+  align-items: center;
   list-style: none;
-  width: 50%;
+  /* background-color: blue; */
 }
 
 .navNextPrev li {
@@ -63,12 +67,13 @@ aside {
   left: 0;
   top: 70px;
   padding-top: 70px;
-  background: rgb(221, 32, 128);
+  background-color: rgb(168, 31, 31);
+  /* background: rgb(221, 32, 128);
   background: radial-gradient(
     circle,
-    rgba(184, 29, 29, 0.637) 0%,
-    rgb(109, 43, 32) 100%
-  );
+    rgb(255, 0, 0) 0%,
+    rgba(255, 38, 0, 0) 100%
+  ); */
 }
 .containerFiltred {
   display: flex;
@@ -131,4 +136,11 @@ aside {
   color: #fff;
   font-size: 18px;
   background-color: black;
+}
+
+.containerRefresh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }

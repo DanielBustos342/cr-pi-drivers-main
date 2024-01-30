@@ -11,7 +11,7 @@
 // Paginado: el listado de drivers se hará por partes. Tu SPA debe contar con un paginado que muestre un total de 9 drivers por página.
 // ⚠️ IMPORTANTE: se deben mostrar tanto los drivers traidos desde la API como así también los de la base de datos, pero NO está permitido almacenar en la base de datos los drivers de la API. Solamente se pueden guardar aquellos creados desde el form.
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getDrivers,
@@ -51,9 +51,10 @@ const Home = () => {
 
   const handleRefresh = () => {
     dispatch(refresh());
-    document.getElementById("select-1").value = "all-drivers";
-    document.getElementById("select-2").value = "------";
-    document.getElementById("select-3").value = "------";
+    // setFilterOrigin("all-drivers");
+    // document.getElementById("select-1").value = "all-drivers";
+    // document.getElementById("select-2").value = "------";
+    // document.getElementById("select-3").value = "------";
   };
 
   return (
@@ -69,6 +70,7 @@ const Home = () => {
                 value="all-drivers"
                 onChange={filter}
                 className={style.inputAside}
+                // checked={filterOrigin === "all-drivers"}
               />
               <label htmlFor="all-drivers">All Drivers</label>
             </li>
@@ -80,6 +82,7 @@ const Home = () => {
                 value="created"
                 onChange={filter}
                 className={style.inputAside}
+                // checked={filterOrigin === "created"}
               />
               <label htmlFor="created">Created</label>
             </li>
@@ -91,6 +94,7 @@ const Home = () => {
                 value="api"
                 onChange={filter}
                 className={style.inputAside}
+                // checked={filterOrigin === "api"}
               />
               <label htmlFor="api">API</label>
             </li>
@@ -133,12 +137,14 @@ const Home = () => {
             </option>
           </select>
         </div>
+        <div className={style.containerRefresh}>
+          <button onClick={handleRefresh} className={style.buttonPage}>
+            Refresh
+          </button>
+        </div>
       </aside>
       <div className={style.containerBodyHome}>
         <div className={style.containerPageNextPrev}>
-          <div className={style.containerPage}>
-            <h3>Page: {currentPage + 1}</h3>
-          </div>
           <ul className={style.navNextPrev}>
             <li>
               <button
@@ -150,9 +156,9 @@ const Home = () => {
               </button>
             </li>
             <li>
-              <button onClick={handleRefresh} className={style.buttonPage}>
-                Refresh
-              </button>
+              <div className={style.containerPage}>
+                <h3>Page: {currentPage + 1}</h3>
+              </div>
             </li>
             <li>
               <button
@@ -168,36 +174,31 @@ const Home = () => {
 
         <Cards drivers={drivers} />
         <div className={style.containerPageNextPrev}>
-          <div className={style.containerPage}>
-            <h3>Page: {currentPage + 1}</h3>
-          </div>
-          <div className={style.containerNextPrev}>
-            <ul className={style.navNextPrev}>
-              <li>
-                <button
-                  onClick={pagination}
-                  name="prev"
-                  className={style.buttonPage}
-                >
-                  {"<< Prev"}
-                </button>
-              </li>
-              <li>
-                <button onClick={handleRefresh} className={style.buttonPage}>
-                  Refresh
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={pagination}
-                  name="next"
-                  className={style.buttonPage}
-                >
-                  {"Next >>"}
-                </button>
-              </li>
-            </ul>
-          </div>
+          <ul className={style.navNextPrev}>
+            <li>
+              <button
+                onClick={pagination}
+                name="prev"
+                className={style.buttonPage}
+              >
+                {"<< Prev"}
+              </button>
+            </li>
+            <li>
+              <div className={style.containerPage}>
+                <h3>Page: {currentPage + 1}</h3>
+              </div>
+            </li>
+            <li>
+              <button
+                onClick={pagination}
+                name="next"
+                className={style.buttonPage}
+              >
+                {"Next >>"}
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

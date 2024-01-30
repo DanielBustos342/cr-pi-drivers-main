@@ -39,7 +39,7 @@ const Form = () => {
     birthdate: "",
     Teams: [],
     image:
-      "https://img.freepik.com/vector-gratis/coche-carreras-formula-1_23-2147871687.jpg?w=740&t=st=1706001078~exp=1706001678~hmac=a7346d9bb8091d314b74a0d2363055b04876e81e09de9c227130bc4e220e3716",
+      "https://i.pinimg.com/originals/e1/2c/9b/e12c9be3e3174b44dec94bf443d23f70.jpg",
     description: "",
   });
 
@@ -239,7 +239,7 @@ const Form = () => {
                 value={form.image}
                 name="image"
                 type="text"
-                placeholder="ingresa imagen poner una de ejemplo"
+                placeholder="add URL"
                 className={style.formData}
               />
             </label>

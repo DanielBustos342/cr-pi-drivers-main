@@ -30,10 +30,6 @@ const Searchbar = () => {
             ></input>
             <button onClick={handleButton} className={style.buttonSearh}>
               <span>Search</span>
-              {/* <div class="top"></div>
-              <div class="left"></div>
-              <div class="bottom"></div>
-              <div class="right"></div> */}
             </button>
           </div>
         </form>
