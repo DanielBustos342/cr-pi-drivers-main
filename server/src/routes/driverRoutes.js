@@ -7,6 +7,6 @@ const driversRouter = Router();
 
 driversRouter.get("/", getDriverHandler);
 driversRouter.get("/:id", getDriverIdHandler);
-postsRouter.post("/", postDriverHandler);
+driversRouter.post("/", postDriverHandler);
 
 module.exports = driversRouter;

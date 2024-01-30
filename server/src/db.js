@@ -1,9 +1,12 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
+const functionDriver = require("./models/Driver");
+const functionTeam = require("./models/Team");
 
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, PORT, BDD } = process.env;
+// console.log({ DB_USER, DB_PASSWORD, DB_HOST, PORT, BDD });
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${BDD}`,
@@ -13,6 +16,9 @@ const sequelize = new Sequelize(
     alter: false,
   }
 );
+
+functionDriver(sequelize);
+functionTeam(sequelize);
 
 const basename = path.basename(__filename);
 

@@ -72,12 +72,12 @@ const getDriversApi = async () => {
   const datamap = data.map((driver) => {
     return {
       id: driver.id,
-      name: driver.name.forename,
-      lastname: driver.name.surname,
+      name: driver.name.name,
+      lastname: driver.name.lastname,
       description: driver.description,
       image: driver.image.url.length
         ? driver.image.url
-        : "../assets/f1-default.jpg",
+        : "https://i.pinimg.com/originals/e1/2c/9b/e12c9be3e3174b44dec94bf443d23f70.jpg",
       nacionality: driver.nationality,
       birthdate: driver.dob,
       Teams: driver.teams?.split(/\s*,\s*/),

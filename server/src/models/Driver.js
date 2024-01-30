@@ -19,21 +19,25 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      forename: {
+      name: {
         type: DataTypes.STRING(15),
         allowNull: false,
         validate: {
+          notnull: false,
+          len: [4, 15],
           notEmpty: {
-            msg: "the forename is required",
+            msg: "the name is required",
           },
         },
       },
-      surname: {
+      lastname: {
         type: DataTypes.STRING(15),
         allowNull: false,
         validate: {
+          len: [4, 15],
+          notnull: false,
           notEmpty: {
-            msg: "the surename is required",
+            msg: "the Lastname is required",
           },
         },
       },
@@ -48,12 +52,17 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: "../assets/f1-default.jpg",
+        defaultValue:
+          "https://i.pinimg.com/originals/e1/2c/9b/e12c9be3e3174b44dec94bf443d23f70.jpg",
+        validate: {
+          isUrl: true,
+        },
       },
-      nationality: {
-        typr: DataTypes.STRING(15),
+      nacionality: {
+        type: DataTypes.STRING(15),
         allowNull: false,
         validate: {
+          notnull: false,
           notEmpty: {
             msg: "the nationality is required",
           },
@@ -63,6 +72,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING(10),
         allowNull: false,
         validate: {
+          notnull: false,
           notEmpty: {
             msg: "the bithdate is required",
           },
