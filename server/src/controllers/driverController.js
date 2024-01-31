@@ -2,7 +2,7 @@ const { Sequelize } = require("sequelize");
 const { Driver, Team } = require("../db");
 const axios = require("axios");
 
-const createDriver = async ({
+const createDriver = async ({ //form
   name,
   lastname,
   description,
@@ -11,7 +11,7 @@ const createDriver = async ({
   birthdate,
   Teams,
 }) => {
-  if (
+  if ( //verifica que todos los campos esten completos
     !name ||
     !lastname ||
     !description ||
@@ -22,7 +22,7 @@ const createDriver = async ({
   )
     throw Error("Missing data");
 
-  const newDriver = await Driver.create({
+  const newDriver = await Driver.create({ //utiliza el modelo Driver para crear un nuevo registro en la base de datos
     name,
     lastname,
     description,
@@ -31,14 +31,14 @@ const createDriver = async ({
     birthdate,
   });
 
-  const teamsDB = await Team.findAll({
+  const teamsDB = await Team.findAll({ // consulta equipos desde la base de datos
     where: {
       name: {
         [Sequelize.Op.in]: Teams,
       },
     },
   });
-  await newDriver.addTeam(teamsDB);
+  await newDriver.addTeam(teamsDB); //utiliza el metodo addTeam proporcionado por Sequelize para asociar el nuevo conductor con los equipos
   return newDriver;
 };
 
@@ -105,7 +105,7 @@ const getDrivers = async (name) => {
 
 const getDriverById = async (id) => {
   if (isNaN(id)) {
-    const drivers = await getDrivers();
+    const drivers = await getDriversDB();
     const driverFound = drivers.find((driver) => driver.id === id);
     if (!driverFound) throw Error("the driver was not found");
     return driverFound;
