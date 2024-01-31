@@ -50,7 +50,9 @@ const Form = () => {
 
   const handleInput = (event) => {
     if (event.target.name === "teams") {
+      //name: obtengo el nombre del input actual
       if (event.target.value !== "------") {
+        //value: obtengo el valor del input actual
         setTeam([...team, event.target.value]);
         setForm((prev) => {
           return {
@@ -75,7 +77,7 @@ const Form = () => {
   };
 
   const addTeam = (event) => {
-    event.preventDefault();
+    event.preventDefault(); //Esto evita que el formulario se envíe cuando se activa el evento
     setInputTeam([
       ...inputTeam,
       <div className="form-label" key={cont}>
@@ -96,16 +98,19 @@ const Form = () => {
     event.preventDefault();
     document.getElementById("teams").value = "------";
     const driversRepeat = drivers.find(
+      //verifica que no hay drivers repetidos
       (driver) =>
         driver.name.toLowerCase() === form.name.toLowerCase() &&
         driver.lastname.toLowerCase() === form.lastname.toLowerCase()
     );
     for (const key in form) {
-      if (form[key] === "") return alert("Faltan completar algunos datos");
+      // verifica que no hay campos vacios
+      if (form[key] === "") return alert("Some data are missing");
     }
-    if (driversRepeat) return alert("The driver is already registered");
+    if (driversRepeat) return alert("The driver is already registered"); //si esta repetido muestra el alert
     dispatch(createDriver(form));
     alert("driver is created");
+    //reset todos los campos y redirije a home
     setInputTeam([]);
     setForm({
       name: "",

@@ -124,14 +124,10 @@ export const refresh = () => {
 
 export const filterOrigin = (origin) => {
   return async (dispatch) => {
-    try {
-      return dispatch({
-        type: FILTER_ORIGIN,
-        payload: origin,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    return dispatch({
+      type: FILTER_ORIGIN,
+      payload: origin,
+    });
   };
 };
 

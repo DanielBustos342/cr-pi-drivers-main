@@ -39,9 +39,9 @@ const reducer = (state = initialState, action) => {
         driverDetail: action.payload,
       };
     case PAGINATION:
-      const next_page = state.currentPage + 1;
+      const next_page = state.currentPage + 1; // Calcula la página siguiente y anterior
       const prev_page = state.currentPage - 1;
-      const firstIndex =
+      const firstIndex = // Calcula el índice inicial según la acción (next o prev) y el número de ítems por página
         action.payload === "next"
           ? next_page * items_Page
           : prev_page * items_Page;
@@ -68,8 +68,9 @@ const reducer = (state = initialState, action) => {
         };
       return {
         ...state,
-        drivers: [...state.driversBackUp]
-          .filter((driver) => driver.Teams?.includes(action.payload)),
+        drivers: [...state.driversBackUp].filter((driver) =>
+          driver.Teams?.includes(action.payload)
+        ),
       };
     case FILTER_ORDER:
       if (action.payload === "------")
@@ -80,41 +81,63 @@ const reducer = (state = initialState, action) => {
       if (action.payload === "asc") {
         return {
           ...state,
-          drivers: [...state.driversBackUp]
-            .sort((a, b) => new Date(a.birthdate) - new Date(b.birthdate))
-            .splice(0, items_Page),
+          drivers: [...state.driversBackUp].sort(
+            (a, b) => new Date(a.birthdate) - new Date(b.birthdate)
+          ),
         };
       }
       if (action.payload === "desc") {
         return {
           ...state,
-          drivers: [...state.driversBackUp]
-            .sort((a, b) => new Date(b.birthdate) - new Date(a.birthdate))
-            .splice(0, items_Page),
+          drivers: [...state.driversBackUp].sort(
+            (a, b) => new Date(b.birthdate) - new Date(a.birthdate)
+          ),
         };
       }
     case FILTER_ORIGIN:
-      if (action.payload === "all-drivers")
-        return {
-          ...state,
-          drivers: [...state.driversBackUp].splice(0, items_Page),
-        };
-      if (action.payload === "api") {
-        return {
-          ...state,
-          drivers: [...state.driversBackUp]
-            .filter((driver) => !isNaN(driver.id))
-            .splice(0, items_Page),
-        };
+      let filteredDrivers;
+
+      if (action.payload === "all-drivers") {
+        filteredDrivers = [...state.driversBackUp];
+      } else if (action.payload === "api") {
+        filteredDrivers = state.driversBackUp.filter(
+          (driver) => !isNaN(driver.id)
+        );
+      } else if (action.payload === "created") {
+        filteredDrivers = state.driversBackUp.filter((driver) =>
+          isNaN(driver.id)
+        );
+      } else {
+        // En caso de que el filtro no coincida con ninguna opción conocida, retorna el estado actual
+        return state;
       }
-      if (action.payload === "created") {
-        return {
-          ...state,
-          drivers: [...state.driversBackUp]
-            .filter((driver) => isNaN(driver.id))
-            .splice(0, items_Page),
-        };
-      }
+
+      return {
+        ...state,
+        drivers: filteredDrivers,
+      };
+
+    // if (action.payload === "all-drivers")
+    //   return {
+    //     ...state,
+    //     drivers: [...state.driversBackUp].splice(0, items_Page),
+    //   };
+    // if (action.payload === "api") {
+    //   return {
+    //     ...state,
+    //     drivers: [...state.driversBackUp]
+    //       .filter((driver) => !isNaN(driver.id))
+    //       .splice(0, items_Page),
+    //   };
+    // }
+    // if (action.payload === "created") {
+    //   return {
+    //     ...state,
+    //     drivers: [...state.driversBackUp]
+    //       .filter((driver) => isNaN(driver.id))
+    //       .splice(0, items_Page),
+    //   };
+    // }
     case REFRESH:
       return {
         ...state,

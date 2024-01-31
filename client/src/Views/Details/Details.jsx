@@ -12,14 +12,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; // accede a los parametros de la URL
 import { cleanDriverDetail, getDriverById } from "../../Redux/actions";
 import style from "./Details.module.css";
 
 const Details = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // obtine el valor del parametro ID de la URL
   const dispatch = useDispatch();
-  const driverDetail = useSelector((state) => state.driverDetail);
+  const driverDetail = useSelector((state) => state.driverDetail); //selecciona una porcion del estado global
 
   useEffect(() => {
     dispatch(getDriverById(id));

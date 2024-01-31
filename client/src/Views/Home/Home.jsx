@@ -30,6 +30,10 @@ const Home = () => {
   const drivers = useSelector((state) => state.drivers);
   const teams = useSelector((state) => state.teams);
   const currentPage = useSelector((state) => state.currentPage);
+  const [filterActived, setFilterActived] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState("------");
+  const [selectedFilterDriver, setSelectedFilterDriver] =
+    useState("all-drivers");
 
   useEffect(() => {
     dispatch(getDrivers());
@@ -41,20 +45,33 @@ const Home = () => {
   };
 
   const filter = (event) => {
-    if (event.target.name === "filter-teams")
-      dispatch(filterTeam(event.target.value));
-    if (event.target.name === "filter-order")
-      dispatch(filterOrder(event.target.value));
-    if (event.target.name === "filter-origin")
-      dispatch(filterOrigin(event.target.value));
+    setFilterActived(true);
+    setSelectedFilter(event.target.value);
+    setSelectedFilterDriver(event.target.value);
+    const filterMap = {
+      "filter-teams": filterTeam,
+      "filter-order": filterOrder,
+      "filter-origin": filterOrigin,
+    };
+    const { name, value } = event.target;
+    const dispatchFilter = filterMap[name];
+
+    if (dispatchFilter) {
+      dispatch(dispatchFilter(value));
+    }
+    // if (event.target.name === "filter-teams")
+    //   dispatch(filterTeam(event.target.value));
+    // if (event.target.name === "filter-order")
+    //   dispatch(filterOrder(event.target.value));
+    // if (event.target.name === "filter-origin")
+    //   dispatch(filterOrigin(event.target.value));
   };
 
   const handleRefresh = () => {
     dispatch(refresh());
-    // setFilterOrigin("all-drivers");
-    // document.getElementById("select-1").value = "all-drivers";
-    // document.getElementById("select-2").value = "------";
-    // document.getElementById("select-3").value = "------";
+    setFilterActived(false);
+    setSelectedFilter("------");
+    setSelectedFilterDriver("all-driver");
   };
 
   return (
@@ -68,9 +85,9 @@ const Home = () => {
                 id="all-drivers"
                 name="filter-origin"
                 value="all-drivers"
+                checked={selectedFilterDriver === "all-drivers"}
                 onChange={filter}
                 className={style.inputAside}
-                // checked={filterOrigin === "all-drivers"}
               />
               <label htmlFor="all-drivers">All Drivers</label>
             </li>
@@ -80,9 +97,9 @@ const Home = () => {
                 id="created"
                 name="filter-origin"
                 value="created"
+                checked={selectedFilterDriver === "created"}
                 onChange={filter}
                 className={style.inputAside}
-                // checked={filterOrigin === "created"}
               />
               <label htmlFor="created">Created</label>
             </li>
@@ -92,20 +109,21 @@ const Home = () => {
                 id="api"
                 name="filter-origin"
                 value="api"
+                checked={selectedFilterDriver === "api"}
                 onChange={filter}
                 className={style.inputAside}
-                // checked={filterOrigin === "api"}
               />
               <label htmlFor="api">API</label>
             </li>
           </ul>
         </div>
+
         <div className={style.titleTeam}>Order by Team</div>
         <div className={style.containerTeams}>
           <select
-            id="select-2"
             name="filter-teams"
             onChange={filter}
+            value={selectedFilter}
             className={style.selectTeams}
           >
             <option value="------" className={style.option}>
@@ -118,12 +136,12 @@ const Home = () => {
             ))}
           </select>
         </div>
-        <div className={style.titleTeam}>Order Asc or Desc</div>
+        <div className={style.titleTeam}>Order by birthdate</div>
         <div className={style.containerOrder}>
           <select
-            id="select-3"
             name="filter-order"
             onChange={filter}
+            value={selectedFilter}
             className={style.selectTeams}
           >
             <option value="------" className={style.option}>
@@ -144,62 +162,66 @@ const Home = () => {
         </div>
       </aside>
       <div className={style.containerBodyHome}>
-        <div className={style.containerPageNextPrev}>
-          <ul className={style.navNextPrev}>
-            <li>
-              <button
-                onClick={pagination}
-                name="prev"
-                className={style.buttonPage}
-              >
-                {"<< Prev"}
-              </button>
-            </li>
-            <li>
-              <div className={style.containerPage}>
-                <h3>Page: {currentPage + 1}</h3>
-              </div>
-            </li>
-            <li>
-              <button
-                onClick={pagination}
-                name="next"
-                className={style.buttonPage}
-              >
-                {"Next >>"}
-              </button>
-            </li>
-          </ul>
-        </div>
+        {!filterActived && (
+          <div className={style.containerPageNextPrev}>
+            <ul className={style.navNextPrev}>
+              <li>
+                <button
+                  onClick={pagination}
+                  name="prev"
+                  className={style.buttonPage}
+                >
+                  {"<< Prev"}
+                </button>
+              </li>
+              <li>
+                <div className={style.containerPage}>
+                  <h3>Page: {currentPage + 1}</h3>
+                </div>
+              </li>
+              <li>
+                <button
+                  onClick={pagination}
+                  name="next"
+                  className={style.buttonPage}
+                >
+                  {"Next >>"}
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
 
         <Cards drivers={drivers} />
-        <div className={style.containerPageNextPrev}>
-          <ul className={style.navNextPrev}>
-            <li>
-              <button
-                onClick={pagination}
-                name="prev"
-                className={style.buttonPage}
-              >
-                {"<< Prev"}
-              </button>
-            </li>
-            <li>
-              <div className={style.containerPage}>
-                <h3>Page: {currentPage + 1}</h3>
-              </div>
-            </li>
-            <li>
-              <button
-                onClick={pagination}
-                name="next"
-                className={style.buttonPage}
-              >
-                {"Next >>"}
-              </button>
-            </li>
-          </ul>
-        </div>
+        {!filterActived && (
+          <div className={style.containerPageNextPrev}>
+            <ul className={style.navNextPrev}>
+              <li>
+                <button
+                  onClick={pagination}
+                  name="prev"
+                  className={style.buttonPage}
+                >
+                  {"<< Prev"}
+                </button>
+              </li>
+              <li>
+                <div className={style.containerPage}>
+                  <h3>Page: {currentPage + 1}</h3>
+                </div>
+              </li>
+              <li>
+                <button
+                  onClick={pagination}
+                  name="next"
+                  className={style.buttonPage}
+                >
+                  {"Next >>"}
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
